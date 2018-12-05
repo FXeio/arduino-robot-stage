@@ -36,14 +36,15 @@ void loop() {
     digitalWrite(pinSorriso, LOW);
     digitalWrite(pinTriste, HIGH);
     tone(pinBuzzer, 415);
-    braccio.write(180);
+    braccio.write(0);
     while (analogRead(A0) < 600); // Aspetta finché non ritorna la luce
     noTone(pinBuzzer);
     digitalWrite(pinTriste, LOW);
     digitalWrite(pinSorriso, HIGH);
-    braccio.write(0);
+    braccio.write(180);
+    delay(350);
     occhiolino();
-  } else if (random(10) == 0) { // Una possibilità su 10
+  } else if (random(15000) == 0) { // Una possibilità su 15000
     blink();
     delay(600);
   }
@@ -59,6 +60,7 @@ void occhiolino() {
 void blink() {
   digitalWrite(pinOcchioDx, LOW);
   digitalWrite(pinOcchioSx, LOW);
+  delay(90);
   digitalWrite(pinOcchioDx, HIGH);
   digitalWrite(pinOcchioSx, HIGH);
 }
