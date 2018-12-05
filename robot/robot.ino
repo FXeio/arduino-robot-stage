@@ -27,25 +27,23 @@ void setup() {
 
   pinMode(pinBuzzer, OUTPUT);
 
-  randomSeed(analogRead(A1)); // Un pin 
-analogico scollegato da un valore casuale
+  randomSeed(analogRead(A1)); // Un pin analogico scollegato da un valore casuale
 }
 
 
 void loop() {
-  if (analogRead(A0) < 600) { // Soglia per 
-rilevare l'ombra
+  if (analogRead(A0) < 600) { // Soglia per rilevare l'ombra
     digitalWrite(pinSorriso, LOW);
     digitalWrite(pinTriste, HIGH);
     tone(pinBuzzer, 415);
     braccio.write(180);
-    while (analogRead(A0) < 600);
+    while (analogRead(A0) < 600); // Aspetta finché non ritorna la luce
     noTone(pinBuzzer);
     digitalWrite(pinTriste, LOW);
     digitalWrite(pinSorriso, HIGH);
     braccio.write(0);
     occhiolino();
-  } else if (random(0, 10) == 0) {
+  } else if (random(10) == 0) { // Una possibilità su 10
     blink();
     delay(600);
   }
